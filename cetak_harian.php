@@ -10,12 +10,6 @@ include"koneksi.php";
     </head>
 <body>
     <h2 id="lap" align="center"> Laporan Penjualan Harian</h2>
-    <div class='detail-nav'>
-        <a class='button' href='dash.php'><button class='close'>
-                Close
-            </button>
-        </a>
-    </div>
     <div id="layoutSidenav_content">
         <main>
         <table class="table table-bordered">
@@ -52,7 +46,7 @@ include"koneksi.php";
         $no = 1;
         $data_barang = mysqli_query($konek,"SELECT transaksi_pending.id_keranjang, transaksi_pending.waktu_transaksi,transaksi_pending.alamat_user, 
             transaksi_pending.jumlah_item, transaksi_pending.total_harga, akun.username, barang.nama_barang FROM transaksi_pending JOIN akun 
-            ON transaksi_pending.id_akun = akun.id_akun JOIN barang ON transaksi_pending.id_barang = barang.id_barang ");
+            ON transaksi_pending.id_akun = akun.id_akun JOIN barang ON transaksi_pending.id_barang = barang.id_barang ORDER BY transaksi_pending.waktu_transksi");
         while ($tampil = mysqli_fetch_array($data_barang)){
             ?>
             <tr>

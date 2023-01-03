@@ -9,12 +9,6 @@ include"koneksi.php";
     </head>
 <body>
     <h2 id="lap" align="center"> Laporan Penjualan</h2>
-    <div class='detail-nav'>
-        <a class='button' href='dash.php'><button class='close'>
-                Close
-            </button>
-        </a>
-    </div>
     <div id="layoutSidenav_content">
         <main>
         <table class="table table-bordered">
@@ -39,10 +33,10 @@ include"koneksi.php";
                 Quantity
             </th>
             <th>
-                Total Harga
+                Harga
             </th>
             <th>
-                Harga
+                Total Harga
             </th>
         
         </tr>
@@ -51,7 +45,7 @@ include"koneksi.php";
         $no = 1;
         $data_barang = mysqli_query($konek, "SELECT transaksi_pending.waktu_transaksi, transaksi_pending.id_keranjang, transaksi_pending.id_barang, 
         barang.nama_barang, transaksi_pending.jumlah_item, transaksi_pending.total_harga, barang.harga FROM transaksi_pending JOIN barang 
-        ON transaksi_pending.id_barang = transaksi_pending.id_barang");
+        ON transaksi_pending.id_barang = transaksi_pending.id_barang ORDER BY transaksi_pending.waktu_transaksi");
         while ($tampil = mysqli_fetch_array($data_barang)){
             ?>
             <tr>
@@ -61,8 +55,8 @@ include"koneksi.php";
                                 <td><?= $tampil['id_barang']; ?></td>
                                 <td><?= $tampil['nama_barang']; ?></td>
                                 <td><?= $tampil['jumlah_item']; ?></td>
-                                <td><?= $tampil['total_harga']; ?></td>
                                 <td><?= $tampil['harga']; ?></td>
+                                <td><?= $tampil['total_harga']; ?></td>
             </tr>
         <?php } 
         ?>
